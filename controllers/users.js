@@ -23,7 +23,7 @@ const createUser = (req, res, next) => {
         if (err.name === errorName.VALIDATION_ERROR) {
           throw new BadRequestError(`${Object.values(err.errors).map((error) => error.message).join(', ')}`);
         } else if (err.name === errorName.DUPLICATE_DATA || err.code === errorCode.MONGO_ERROR) {
-          throw new DuplicateEntryError({ message: errorMessage.DUPLICATE_EMAIL });
+          throw new DuplicateEntryError(errorMessage.DUPLICATE_EMAIL);
         } else {
           next(err);
         }

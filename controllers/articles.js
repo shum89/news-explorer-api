@@ -30,8 +30,8 @@ const createArticle = (req, res, next) => {
   Article.create({
     keyword, title, text, date, source, link, image, owner: req.user._id,
   })
-    .catch(() => {
-      throw new BadRequestError(errorMessage.INCORRECT_ARTICLE_DATA);
+    .catch((err) => {
+      throw new BadRequestError(`${Object.values(err.errors).map((error) => error.message).join(', ')}`);
     })
     .then((article) => res.send(
       {
