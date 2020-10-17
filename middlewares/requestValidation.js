@@ -30,10 +30,9 @@ const validateDate = (value) => {
 
 /**
  * register request validation
- * @type {}
  */
 const validateRegister = celebrate({
-  body: Joi.object().keys({
+  body: Joi.object().options({ abortEarly: false }).keys({
     email: Joi.string().required().email(),
     name: Joi.string().required().min(2).max(30),
     password: Joi.string().required().min(8),
@@ -49,15 +48,14 @@ const validateRegister = celebrate({
 
 /**
  * id validation
- * @type {}
  */
 const validateId = celebrate({
-  params: Joi.object().keys({
+  params: Joi.object().options({ abortEarly: false }).keys({
     _id: Joi.string().hex().length(24),
   }).messages({
     'string.base': requestValidationMessage.string,
     'hex.base': requestValidationMessage.hex,
-    'string.min': requestValidationMessage.tooShort,
+    'string.length': requestValidationMessage.length,
     'string.required': requestValidationMessage.required,
     'object.unknown': requestValidationMessage.redundant,
   }),
@@ -65,10 +63,9 @@ const validateId = celebrate({
 
 /**
  * login validation
- * @type {}
  */
 const validateLogin = celebrate({
-  body: Joi.object().keys({
+  body: Joi.object().options({ abortEarly: false }).keys({
     email: Joi.string().required().email(),
     password: Joi.string().required().min(8),
   }).messages({
@@ -82,10 +79,9 @@ const validateLogin = celebrate({
 
 /**
  * article validation
- * @type {}
  */
 const validateArticle = celebrate({
-  body: Joi.object().keys({
+  body: Joi.object().options({ abortEarly: false }).keys({
     keyword: Joi.string().required(),
     title: Joi.string().required(),
     text: Joi.string().required(),

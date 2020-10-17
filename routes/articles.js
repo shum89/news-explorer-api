@@ -9,7 +9,6 @@ const articleRouter = express.Router();
 
 articleRouter.get('/articles', getArticles);
 articleRouter.post('/articles', validateArticle, createArticle);
-
 articleRouter.delete('/articles/:_id', validateId, deleteArticle);
 
 module.exports = articleRouter;

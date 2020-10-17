@@ -3,6 +3,7 @@ const jwt = require('jsonwebtoken');
 const User = require('../models/user');
 const DuplicateEntryError = require('../errors/DuplicateEntryError');
 const NotFoundError = require('../errors/NotFoundError');
+const BadRequestError = require('../errors/BadRequestError');
 const { errorName, successMessage, errorMessage } = require('../constants/messages');
 const { errorCode } = require('../constants/statusConstants');
 
@@ -19,7 +20,9 @@ const createUser = (req, res, next) => {
   bcrypt.hash(password, 10)
     .then((hash) => User.create({ name, email, password: hash })
       .catch((err) => {
-        if (err.name === errorName.DUPLICATE_DATA || err.code === errorCode.MONGO_ERROR) {
+        if (err.name === errorName.VALIDATION_ERROR) {
+          throw new BadRequestError(`${Object.values(err.errors).map((error) => error.message).join(', ')}`);
+        } else if (err.name === errorName.DUPLICATE_DATA || err.code === errorCode.MONGO_ERROR) {
           throw new DuplicateEntryError({ message: errorMessage.DUPLICATE_EMAIL });
         } else {
           next(err);
