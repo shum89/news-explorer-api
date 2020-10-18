@@ -53,36 +53,36 @@ https://www.news.sh.students.nomoreparties.xyz/
       "mistake": "oops",
     }
    * приходит сообщение об ошибках
-   
-   
-   
-      {
-        "message": "please enter valid email, name is not allowed to be empty, password is not allowed to be empty, mistake is redundant"
-      }      
+
+          {
+            "message": "please enter valid email, name is not allowed to be empty, password is not allowed to be empty, mistake is redundant"
+          }
+          
 ### Авторизация
 
 POST http://localhost:3000/signin
-  
-В теле запроса передать объект вида
 
-    {
-      "email": "test@test.com",
-      "password": "12345678",
-    }
+* Передать объект в теле запроса
+
+      {
+          "email": "test@test.com",
+          "password": "12345678",
+        }
+  
   
 * При успешном запросе приходит объект со статусом 200.
 
 
-    {
-      "message": "Authorization successful"
-    }
+      {
+        "message": "Authorization successful"
+      }
 
 * При некорректных почте и/или пароле приходит ответ со статусом 401 и объектом
 
 
-    {
-      "message": "Incorrect email or password"
-    }
+      {
+        "message": "Incorrect email or password"
+      }
 
 ### Получение информации о пользователе
 
@@ -91,30 +91,30 @@ GET http://localhost:3000/users/me
 * При успешном ответе приходит объект с email и name пользователя со статусом 200.
 
 
-    {
-      "email": "test1@email.com",
-      "name": "test"
-    }
+      {
+        "email": "test1@email.com",
+        "name": "test"
+      }
 
 ### Добавление статьи
   
 POST http://localhost:3000/articles
 
-  Передать объект в теле запроса
+  * Передать объект в теле запроса
 
-    {
-      "keyword": "test", 
-      "title": "test", 
-      "text": "test", 
-      "date":"28 ноября, 2022", 
-      "source":"test.ru", 
-      "link":"test.ru", 
-      "image":"test.ru"
-    }
+        {
+          "keyword": "test", 
+          "title": "test", 
+          "text": "test", 
+          "date":"28 ноября, 2022", 
+          "source":"test.ru", 
+          "link":"test.ru", 
+          "image":"test.ru"
+        }
   
    * При успешном запросе приходит объект статьи со статусом 200.
   
-   * При попытке создать карточку с некорректными данными приходит ответ со статусом 400 и ошибками валидации.
+   * При попытке создать статью с некорректными данными приходит ответ со статусом 400 и ошибками валидации.
   
 ### Удаление статьи
   
@@ -124,12 +124,12 @@ DELETE http://localhost:3000/articles/:id
   
 * При попытке удалить чужую или несуществующую статью приходит ответ со статусом 404 и сообщением. 
     
-    
-    {
-      "message": "User doesn't have card with this id"
-    }
 
-* При попытке удалить карточку с некорректным id приходит ответ со статусом 400 и ошибками валидации.
+      {
+        "message": "User doesn't have card with this id"
+      }
+
+* При попытке удалить cтатью с некорректным id приходит ответ со статусом 400 и ошибками валидации.
 
 ### Получение статей пользователя
   
