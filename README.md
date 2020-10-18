@@ -110,7 +110,7 @@ POST http://localhost:3000/articles
       "source":"test.ru", 
       "link":"test.ru", 
       "image":"test.ru"
-     }
+    }
   
    * При успешном запросе приходит объект статьи со статусом 200.
   
