@@ -24,13 +24,14 @@ https://www.news.sh.students.nomoreparties.xyz/
 ### Регистрация
 
   POST http://localhost:3000/signup 
-    Передать объект в теле запроса
+  
+   * Передать объект в теле запроса
    
-       {
-        "name": "Mr. Test",
-        "email": "test@test.com",
-        "password": "12345678",
-      }
+    {
+      "name": "Mr. Test",
+      "email": "test@test.com",
+      "password": "12345678",
+    }
   
    * При успешном запросе приходит объект пользователя со статусом 200.
    
@@ -52,65 +53,64 @@ https://www.news.sh.students.nomoreparties.xyz/
       "password": "",
       "mistake": "oops",
     }
+    
    * приходит сообщение об ошибках
 
-          {
-            "message": "please enter valid email, name is not allowed to be empty, password is not allowed to be empty, mistake is redundant"
-          }
+    {
+      "message": "please enter valid email, name is not allowed to be empty, password is not allowed to be empty, mistake is redundant"
+    }
           
 ### Авторизация
 
 POST http://localhost:3000/signin
 
-* Передать объект в теле запроса
+   * Передать объект в теле запроса
 
-      {
-          "email": "test@test.com",
-          "password": "12345678",
-        }
+    {
+      "email": "test@test.com",
+      "password": "12345678",
+    }
   
   
-* При успешном запросе приходит объект со статусом 200.
+   * При успешном запросе приходит объект со статусом 200.
 
+    {
+      "message": "Authorization successful"
+    }
 
-      {
-        "message": "Authorization successful"
-      }
-
-* При некорректных почте и/или пароле приходит ответ со статусом 401 и объектом
-
-
-      {
-        "message": "Incorrect email or password"
-      }
-
+   * При некорректных почте и/или пароле приходит ответ со статусом 401 и объектом
+   
+    {
+      "message": "Authorization successful"
+    }
+    
 ### Получение информации о пользователе
 
 GET http://localhost:3000/users/me
 
-* При успешном ответе приходит объект с email и name пользователя со статусом 200.
+   * При успешном ответе приходит объект с email и name пользователя со статусом 200.
 
 
-      {
-        "email": "test1@email.com",
-        "name": "test"
-      }
+    {
+      "email": "test1@email.com",
+      "name": "test"
+    }
 
 ### Добавление статьи
   
 POST http://localhost:3000/articles
 
-  * Передать объект в теле запроса
+   * Передать объект в теле запроса
 
-        {
-          "keyword": "test", 
-          "title": "test", 
-          "text": "test", 
-          "date":"28 ноября, 2022", 
-          "source":"test.ru", 
-          "link":"test.ru", 
-          "image":"test.ru"
-        }
+    {
+      "keyword": "test", 
+      "title": "test", 
+      "text": "test", 
+      "date":"28 ноября, 2022", 
+      "source":"test.ru", 
+      "link":"test.ru", 
+      "image":"test.ru"
+     }
   
    * При успешном запросе приходит объект статьи со статусом 200.
   
