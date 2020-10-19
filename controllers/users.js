@@ -7,7 +7,7 @@ const BadRequestError = require('../errors/BadRequestError');
 const { errorName, successMessage, errorMessage } = require('../constants/messages');
 const { errorCode } = require('../constants/statusConstants');
 
-const { JWT_SECRET, NODE_ENV } = process.env;
+const { JWT_SECRET } = require('../config');
 
 /**
  * sign up user
@@ -63,7 +63,7 @@ const login = (req, res, next) => {
   return User.findUserByCredentials(email, password).then((user) => {
     const token = jwt.sign(
       { _id: user._id },
-      NODE_ENV === 'production' ? JWT_SECRET : 'dev-secret',
+      JWT_SECRET,
       { expiresIn: '7d' },
     );
     res.cookie('jwt', token, {

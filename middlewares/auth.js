@@ -1,5 +1,5 @@
-const { JWT_SECRET, NODE_ENV } = process.env;
 const jwt = require('jsonwebtoken');
+const { JWT_SECRET } = require('../config');
 const UnauthorisedError = require('../errors/UnauthorisedError');
 const { errorMessage } = require('../constants/messages');
 /**
@@ -12,7 +12,7 @@ module.exports = (req, res, next) => {
   const token = req.cookies.jwt;
   let payload;
   try {
-    payload = jwt.verify(token, `${NODE_ENV === 'production' ? JWT_SECRET : 'dev-secret'}`);
+    payload = jwt.verify(token, JWT_SECRET);
   } catch (err) {
     throw new UnauthorisedError({ message: errorMessage.AUTH_REQUIRED });
   }

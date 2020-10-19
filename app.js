@@ -1,19 +1,17 @@
-require('dotenv').config();
 const express = require('express');
+const helmet = require('helmet');
 const mongoose = require('mongoose');
 const bodyParser = require('body-parser');
 const cookieParser = require('cookie-parser');
 const { celebrateErrorHandler } = require('./middlewares/celebrateValidation');
-
-const { MONGO_ADRESS } = process.env;
+const { MONGO_ADRESS, PORT } = require('./config');
 const { requestLogger, errorLogger } = require('./utils/logger');
 const { limiter } = require('./utils/limiter');
 const { router } = require('./routes');
 const errorHandler = require('./middlewares/errorHandler');
 
-const { PORT = 3000 } = process.env;
-
 const app = express();
+app.use(helmet());
 app.use(bodyParser.json());
 app.use(cookieParser());
 app.use(bodyParser.urlencoded({ extended: true }));
