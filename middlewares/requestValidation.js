@@ -54,7 +54,7 @@ const validateId = celebrate({
     _id: Joi.string().hex().length(24),
   }).messages({
     'string.base': requestValidationMessage.string,
-    'hex.base': requestValidationMessage.hex,
+    'string.hex': requestValidationMessage.hex,
     'string.length': requestValidationMessage.length,
     'string.required': requestValidationMessage.required,
     'object.unknown': requestValidationMessage.redundant,
