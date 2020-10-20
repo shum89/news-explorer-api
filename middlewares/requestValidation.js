@@ -16,19 +16,6 @@ const validateUrl = (value) => {
 };
 
 /**
- * date validation
- * @param value
- * @return {*}
- */
-const validateDate = (value) => {
-  const regexp = /\d\d?\s(января|февраля|марта|апреля|мая|июня|июля|августа|сентября|октября|ноября|декабря),\s\d{4}/g;
-  if (!regexp.test(value)) {
-    throw new CelebrateError(errorMessage.INCORRECT_DATE);
-  }
-  return value;
-};
-
-/**
  * register request validation
  */
 const validateRegister = celebrate({
@@ -85,7 +72,7 @@ const validateArticle = celebrate({
     keyword: Joi.string().required(),
     title: Joi.string().required(),
     text: Joi.string().required(),
-    date: Joi.string().required().custom(validateDate),
+    date: Joi.string().required(),
     source: Joi.string().required(),
     link: Joi.string().required().custom(validateUrl),
     image: Joi.string().required().custom(validateUrl),

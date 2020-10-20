@@ -1,6 +1,7 @@
 const Article = require('../models/article');
 const BadRequestError = require('../errors/BadRequestError');
 const NotFoundError = require('../errors/NotFoundError');
+const PermissionError = require('../errors/PermissionError');
 
 const { errorMessage, successMessage } = require('../constants/messages');
 /**
@@ -53,13 +54,19 @@ const createArticle = (req, res, next) => {
  * @param next
  */
 const deleteArticle = (req, res, next) => {
-  Article.findOneAndDelete({ _id: req.params._id, owner: req.user._id }).orFail().catch(() => {
-    throw new NotFoundError(errorMessage.ARTICLE_NOT_FOUND);
-  }).then(() => {
-    res.send({
-      message: successMessage.ARTICLE_DELETED,
-    });
-  })
+  Article.findById(req.params._id).select('+owner')
+    .orFail()
+    .catch(() => {
+      throw new NotFoundError({ message: errorMessage.ARTICLE_NOT_FOUND });
+    })
+    .then((article) => {
+      if (req.user._id === article.owner.toString()) {
+        Article.findByIdAndDelete(req.params._id)
+          .then(() => res.send({ message: successMessage.ARTICLE_DELETED })).catch(next);
+      } else {
+        throw new PermissionError({ message: errorMessage.PERMISSION_ERROR });
+      }
+    })
     .catch(next);
 };
 

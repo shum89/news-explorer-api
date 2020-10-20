@@ -46,6 +46,7 @@ const articleSchema = mongoose.Schema({
   },
   date: {
     type: String,
+    required: true,
   },
 });
 

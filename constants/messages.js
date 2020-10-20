@@ -17,11 +17,12 @@
 const errorMessage = {
   INVALID_URL: 'Please enter valid URL',
   INVALID_EMAIL: 'Please enter valid email',
-  ARTICLE_NOT_FOUND: 'User doesn\'t have article with this id',
+  ARTICLE_NOT_FOUND: 'Article not found',
   USER_NOT_FOUND: 'No user with this id',
   INCORRECT_USER_DATA: 'Incorrect user data',
   INCORRECT_ARTICLE_DATA: 'Incorrect article data',
   SERVER_ERROR: 'Server error',
+  PERMISSION_ERROR: 'You can only remove your own articles',
   NOT_FOUND: 'Requested resource is not found',
   DUPLICATE_EMAIL: 'User with this email already exists',
   INCORRECT_AUTH_DATA: 'Incorrect email or password',

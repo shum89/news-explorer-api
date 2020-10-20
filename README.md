@@ -17,7 +17,7 @@
 
 ## Домен
 
-https://www.news.sh.students.nomoreparties.xyz/
+https://api.shnews.students.nomoreparties.xyz/
 
 ## Запросы
 

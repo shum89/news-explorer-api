@@ -23,7 +23,7 @@ const createUser = (req, res, next) => {
         if (err.name === errorName.VALIDATION_ERROR) {
           throw new BadRequestError(`${Object.values(err.errors).map((error) => error.message).join(', ')}`);
         } else if (err.name === errorName.DUPLICATE_DATA || err.code === errorCode.MONGO_ERROR) {
-          throw new DuplicateEntryError(errorMessage.DUPLICATE_EMAIL);
+          throw new DuplicateEntryError({ message: errorMessage.DUPLICATE_EMAIL });
         } else {
           next(err);
         }
@@ -43,7 +43,7 @@ const createUser = (req, res, next) => {
 const getUser = (req, res, next) => {
   User.findById(req.user._id)
     .orFail().catch(() => {
-      throw new NotFoundError(errorMessage.USER_NOT_FOUND);
+      throw new NotFoundError({ message: errorMessage.USER_NOT_FOUND });
     })
     .then((user) => {
       res.send({ email: user.email, name: user.name });
