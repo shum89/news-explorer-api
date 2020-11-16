@@ -3,7 +3,7 @@ const helmet = require('helmet');
 const mongoose = require('mongoose');
 const bodyParser = require('body-parser');
 const cookieParser = require('cookie-parser');
-const { cors } = require('cors');
+const cors = require('cors');
 const { celebrateErrorHandler } = require('./middlewares/celebrateValidation');
 const { MONGO_ADRESS, PORT } = require('./config');
 const { requestLogger, errorLogger } = require('./utils/logger');
@@ -19,7 +19,7 @@ const app = express();
 app.use(helmet());
 app.use(bodyParser.json());
 app.use(cookieParser());
-app.use(cors());
+app.use(cors(corsOptions));
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(limiter);
 
