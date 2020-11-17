@@ -11,13 +11,8 @@ const { limiter } = require('./utils/limiter');
 const { router } = require('./routes');
 const errorHandler = require('./middlewares/errorHandler');
 
-const corsOptions = {
-  credentials: true,
-  origin: ['http://localhost:3000', 'https://localhost:3000'],
-};
 const app = express();
 app.use(helmet());
-app.use(cors());
 app.use(cookieParser());
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
