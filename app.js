@@ -13,7 +13,7 @@ const errorHandler = require('./middlewares/errorHandler');
 
 const corsOptions = {
   credentials: true,
-  origin: ['http://localhost:3001', 'https://localhost:3001'],
+  origin: ['http://localhost:3000', 'https://localhost:3000'],
 };
 const app = express();
 app.use(helmet());
