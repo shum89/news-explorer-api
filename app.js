@@ -11,15 +11,11 @@ const { limiter } = require('./utils/limiter');
 const { router } = require('./routes');
 const errorHandler = require('./middlewares/errorHandler');
 
-const whitelist = ['http://localhost:3000'];
 const corsOptions = {
-  origin(origin, callback) {
-    if (whitelist.indexOf(origin) !== -1) {
-      callback(null, true);
-    } else {
-      callback(new Error('Not allowed by CORS'));
-    }
-  },
+  origin: [
+    'http://localhost:3000',
+  ],
+  credentials: true,
 };
 const app = express();
 app.use(helmet());
