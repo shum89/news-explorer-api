@@ -16,7 +16,7 @@ const corsOptions = {
     'http://localhost:3001',
     'https://localhost:3001',
     'http://localhost:3000',
-    'https://s.news.students.nomoreparties.xyz/',
+    'https://s.news.students.nomoreparties.xyz',
   ],
   credentials: true,
 };
