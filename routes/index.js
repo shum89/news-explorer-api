@@ -11,8 +11,8 @@ router.use('/', authRouter);
 /**
  * authorisation middleware
  */
-router.use('/', userRouter);
 router.use(auth);
+router.use('/', userRouter);
 router.use('/', articleRouter);
 
 router.use(() => {
