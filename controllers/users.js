@@ -70,7 +70,7 @@ const login = (req, res, next) => {
       maxAge: 3600000 * 24 * 7,
       httpOnly: true,
       sameSite: true,
-    }).send({ message: successMessage.AUTH_SUCCESSFUL });
+    }).send({ message: successMessage.AUTH_SUCCESSFUL, token });
   }).catch(next);
 };
 

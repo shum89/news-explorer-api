@@ -12,14 +12,14 @@ const { router } = require('./routes');
 const errorHandler = require('./middlewares/errorHandler');
 
 const corsOptions = {
-  origin: ['http://localhost:3000', 'https://localhost:3000'],
   credentials: true,
+  origin: ['http://localhost:3001', 'https://localhost:3001'],
 };
 const app = express();
 app.use(helmet());
+app.use(cookieParser());
 app.use(cors(corsOptions));
 app.use(bodyParser.json());
-app.use(cookieParser());
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(limiter);
 

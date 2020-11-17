@@ -43,6 +43,7 @@ const createArticle = (req, res, next) => {
         source: article.source,
         link: article.link,
         image: article.image,
+        _id: article._id,
       },
     ))
     .catch(next);
