@@ -13,7 +13,10 @@ const errorHandler = require('./middlewares/errorHandler');
 
 const corsOptions = {
   origin: [
+    'http://localhost:3001',
+    'https://localhost:3001',
     'http://localhost:3000',
+    'https://s.news.students.nomoreparties.xyz/',
   ],
   credentials: true,
 };
